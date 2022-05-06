@@ -1,0 +1,26 @@
+﻿<Window x:Class="MrRaysAuctioneer.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MrRaysAuctioneer"
+        xmlns:p="clr-namespace:MrRaysAuctioneer.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.Settings}" Height="196" Width="464"
+        Closing="SettingsWindow_Closing">
+    <Grid Height="179" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="167*"/>
+            <ColumnDefinition Width="297*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="ClientIdTextBox" HorizontalAlignment="Left" Margin="135,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="302" Grid.ColumnSpan="2" />
+        <Label x:Name="ClientIdLabel" Content="ClientId" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label x:Name="ClientSecretLabel" Content="ClientSecret" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="ClientSecretTextBox" HorizontalAlignment="Left" Margin="135,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="302" Grid.ColumnSpan="2"/>
+        <Label x:Name="RegionLabel" Content="Region" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="92"/>
+        <ComboBox x:Name="RegionComboBox" HorizontalAlignment="Left" Margin="135,70,0,0" VerticalAlignment="Top" Width="302" Grid.ColumnSpan="2" />
+        <Label x:Name="ConnectedRealmIdLabel" Content="Connected Realm Id" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ConnectedRealmIdTextBox" HorizontalAlignment="Left" Margin="135,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="302" Grid.ColumnSpan="2"/>
+        <Button x:Name="SaveButton" Content="{x:Static p:Resources.Save}" HorizontalAlignment="Left" Margin="14,130,0,0" VerticalAlignment="Top" Click="SaveButton_Click" Width="84"/>
+    </Grid>
+</Window>

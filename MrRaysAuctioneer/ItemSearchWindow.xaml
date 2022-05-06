@@ -1,0 +1,25 @@
+﻿<Window x:Class="MrRaysAuctioneer.ItemSearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:MrRaysAuctioneer.Properties"
+        xmlns:local="clr-namespace:MrRaysAuctioneer"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.ItemSearchWindow_Title}" Height="200" Width="300">
+        <DockPanel Margin="10">
+            <TextBox DockPanel.Dock="Top" Margin="0,0,0,10" Name="txtFilter" KeyDown="txtFilter_KeyDown" TextChanged="TxtFilter_TextChanged" Height="18" Width="249" />
+            <DataGrid Name="SearchResultList" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" >
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="SearchResultList_DoubleClick"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static p:Resources.Id}" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="{x:Static p:Resources.Name}" Binding="{Binding Name.Current}"/>
+                <DataGridTextColumn Header="{x:Static p:Resources.Price}" Binding="{Binding PurchasePrice}"/>
+            </DataGrid.Columns>
+            </DataGrid>
+    </DockPanel>
+</Window>
