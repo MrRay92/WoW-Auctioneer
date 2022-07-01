@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MrRaysAuctioneer.Models.WoW.Item
@@ -14,26 +15,29 @@ namespace MrRaysAuctioneer.Models.WoW.Item
         /// <summary>
         ///   Gets or sets the auctions
         /// </summary>
-        [DataMember(Name = "results", IsRequired = true)]
-        public List<Result> Results
+        [JsonPropertyName("results")]
+        public IList<Result> Results
         {
             get;
-            internal set;
+            set;
         }
 
-    }
+        [JsonPropertyName("pageSize")]
+        public long PageSize { get; set; }
 
+    }
+        
     [DataContract]
     public class Result
     {
         /// <summary>
         ///   Gets or sets the Items
         /// </summary>
-        [DataMember(Name = "data", IsRequired = true)]
+        [JsonPropertyName("data")]
         public Item Item
         {
             get;
-            internal set;
+            set;
         }
     }
 

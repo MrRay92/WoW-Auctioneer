@@ -1,11 +1,12 @@
 ﻿using MrRaysAuctioneer.Models.WoW;
+using MrRaysAuctioneer.Models.WoW.Api;
 using MrRaysAuctioneer.Models.WoW.Item;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Web;
 
 namespace MrRaysAuctioneer.Helper
@@ -33,7 +34,7 @@ namespace MrRaysAuctioneer.Helper
 
             string Url = $"https://{GetRegion()}.api.blizzard.com/";
             Url += action;
-            Url += "?access_token=" + oAuthToken.Access_token;
+            Url += "?access_token=" + oAuthToken.AccessToken;
             Url += "&namespace=" + ns;
             Url += "&locale=" + LocalizationHelper.GetWoWCultureInfo();
             if (!string.IsNullOrEmpty(query))
@@ -53,7 +54,7 @@ namespace MrRaysAuctioneer.Helper
         {
             var query = $"name.{LocalizationHelper.GetWoWCultureInfo()}={name}";
             var response = ProcessRequest("data/wow/search/item", query, $"static-{GetRegion()}");
-            var ItemSearchResult = JsonConvert.DeserializeObject<ItemSearch>(response);
+            var ItemSearchResult = JsonSerializer.Deserialize<ItemSearch>(response);
             var result = ItemSearchResult.Results.Select(d => d.Item).ToList();
             return result;
         }
@@ -64,7 +65,13 @@ namespace MrRaysAuctioneer.Helper
         public AuctionsHouse GetAuctions()
         {
             var response = ProcessRequest($"data/wow/connected-realm/{Properties.Settings.Default.ConnectedRealmId}/auctions", "", $"dynamic-{GetRegion()}");
-            var auctionsHouse = JsonConvert.DeserializeObject<AuctionsHouse>(response);
+            var serializerOptions = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                AllowTrailingCommas = true,
+                ReadCommentHandling = JsonCommentHandling.Skip,
+            };
+            var auctionsHouse = JsonSerializer.Deserialize<AuctionsHouse>(response, serializerOptions);
             auctionsHouse.LastUpdate = DateTime.Now;
             return auctionsHouse;
         }
@@ -77,11 +84,11 @@ namespace MrRaysAuctioneer.Helper
         public string GetItemImage(long itemId)
         {
             var response = ProcessRequest($"data/wow/media/item/{itemId}", ns: $"static-{GetRegion()}");
-            var ItemMedia = JsonConvert.DeserializeObject<ItemMedia>(response);
-            if (ItemMedia.assets == null)
+            var ItemMedia = JsonSerializer.Deserialize<ItemMedia>(response);
+            if (ItemMedia.Assets == null)
                 return null;
            
-            return ItemMedia.assets.First(a=>a.key == "icon").value;
+            return ItemMedia.Assets.First(a=>a.Key == "icon").Value;
         }
 
         /// <summary>
@@ -101,7 +108,7 @@ namespace MrRaysAuctioneer.Helper
             request.Content = new StringContent(ToQueryString(parm)[1..], System.Text.Encoding.UTF8, "application/x-www-form-urlencoded");
             var response = client.Send(request);
 
-            return JsonConvert.DeserializeObject<OAuthToken>(response.Content.ReadAsStringAsync().Result);
+            return JsonSerializer.Deserialize<OAuthToken>(response.Content.ReadAsStringAsync().Result);
         }
 
         private static string ToQueryString(NameValueCollection nvc)
@@ -121,14 +128,6 @@ namespace MrRaysAuctioneer.Helper
         {
            return Properties.Settings.Default.Region;
         }
-    }
-
-    public class OAuthToken
-    {
-        public string Access_token { get; set; }
-        public string Token_type { get; set; }
-        public int Expires_in { get; set; }
-        public string Scope { get; set; }
     }
 
 }

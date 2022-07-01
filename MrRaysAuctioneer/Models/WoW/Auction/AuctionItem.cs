@@ -18,7 +18,7 @@ namespace MrRaysAuctioneer.Models.WoW
         public int Id
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace MrRaysAuctioneer.Models.WoW
         public int Context
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace MrRaysAuctioneer.Models.WoW
         public int PetSpeciesId
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace MrRaysAuctioneer.Models.WoW
         public int PetBreedId
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace MrRaysAuctioneer.Models.WoW
         public int PetLevel
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace MrRaysAuctioneer.Models.WoW
         public ItemQuality PetQuality
         {
             get;
-            internal set;
+            set;
         }
 
     }

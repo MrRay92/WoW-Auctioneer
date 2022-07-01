@@ -1,28 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace MrRaysAuctioneer.Models.WoW.Item
 {
     public class ItemMedia
     {
-        public List<asset> assets
+        [JsonPropertyName("assets")]
+        public List<Asset> Assets
         {
             get;set;
         }
 
     }
 
-    public class asset
+    public class Asset
     {
-        public string key
+        [JsonPropertyName("key")]
+        public string Key
         {
             get;set;
         }
 
-        public string value
+        [JsonPropertyName("value")]
+        public string Value
         {
             get; set;
         }

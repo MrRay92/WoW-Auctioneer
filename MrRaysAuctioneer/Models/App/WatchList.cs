@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MrRaysAuctioneer.Models.App
@@ -30,7 +30,7 @@ namespace MrRaysAuctioneer.Models.App
 
         public void Save(string filePath = null)
         {
-            string json = JsonConvert.SerializeObject(this);
+            string json = JsonSerializer.Serialize(this);
             File.WriteAllText(GetPath(filePath), json);
         }
 
@@ -40,7 +40,7 @@ namespace MrRaysAuctioneer.Models.App
                 return new WatchList();
 
             var json = File.ReadAllText(GetPath(filePath));
-            return JsonConvert.DeserializeObject<WatchList>(json);
+            return JsonSerializer.Deserialize<WatchList>(json);
         }
 
         public string GetPath(string filePath = null)

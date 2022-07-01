@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MrRaysAuctioneer.Models.WoW
@@ -13,72 +14,72 @@ namespace MrRaysAuctioneer.Models.WoW
         /// <summary>
         ///   Gets or sets the auction id
         /// </summary>
-        [DataMember(Name = "id", IsRequired = true)]
+        [JsonPropertyName("id")]
         public long AuctionId
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the auction id
         /// </summary>
-        [DataMember(Name = "item", IsRequired = true)]
+        [JsonPropertyName("item")]
         public AuctionItem Item
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the bid value in copper
         /// </summary>
-        [DataMember(Name = "bid", IsRequired = false)]
+        [JsonPropertyName("bid")]
         public long CurrentBidValue
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   gets or sets the buyout value in copper
         /// </summary>
-        [DataMember(Name = "buyout", IsRequired = false)]
+        [JsonPropertyName("buyout")]
         public long? BuyoutValue
         {
             get;
-            internal set;
+            set;
         }
 
 
         /// <summary>
         ///   gets or sets the unit price value in copper
         /// </summary>
-        [DataMember(Name = "unit_price", IsRequired = false)]
+        [JsonPropertyName("unit_price")]
         public long? UnitPrice
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   gets or sets the quantity
         /// </summary>
-        [DataMember(Name = "quantity", IsRequired = true)]
+        [JsonPropertyName("quantity")]
         public int Quantity
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         /// Gets or sets the time left for the auction to expire
         /// </summary>
-        [DataMember(Name = "time_Left", IsRequired = false)]
+        [JsonPropertyName("time_Left")]
         public string TimeLeft
         {
             get;
-            internal set;
+            set;
         }
     }
 

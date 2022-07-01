@@ -5,16 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MrRaysAuctioneer.Models.WoW
 {
-    [DataContract]
+    [DataContract]   
     public class AuctionsHouse
     {
-
-        [DataMember(IsRequired = false)]
+        
         public DateTime LastUpdate
         {
             get;set;
@@ -23,17 +23,17 @@ namespace MrRaysAuctioneer.Models.WoW
         /// <summary>
         ///   Gets or sets the auctions
         /// </summary>
-        [DataMember(Name = "auctions", IsRequired = true)]
+        [JsonPropertyName("auctions")]
         public IList<Auction> Auctions
         {
             get;
-            internal set;
+            set;
         }
 
         #region Functions
         public void Save()
         {
-            string json = JsonConvert.SerializeObject(this);
+            string json = JsonSerializer.Serialize(this);
             File.WriteAllText(FileHelper.GetTempPath("AuctionsHouse.json"), json);
         }
 
@@ -42,8 +42,12 @@ namespace MrRaysAuctioneer.Models.WoW
             if (!File.Exists(FileHelper.GetTempPath("AuctionsHouse.json")))
                 return null;
 
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
             var json = File.ReadAllText(FileHelper.GetTempPath("AuctionsHouse.json"));
-            return JsonConvert.DeserializeObject<AuctionsHouse>(json);
+            return JsonSerializer.Deserialize<AuctionsHouse>(json, options);
         }
         #endregion
     }

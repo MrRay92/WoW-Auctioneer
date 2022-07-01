@@ -1,5 +1,6 @@
 ﻿using MrRaysAuctioneer.Models.WoW.Common;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace MrRaysAuctioneer.Models.WoW.Item
 {
@@ -10,123 +11,123 @@ namespace MrRaysAuctioneer.Models.WoW.Item
         /// <summary>
         ///   Gets or sets the Item id
         /// </summary>
-        [DataMember(Name = "id", IsRequired = true)]
+        [JsonPropertyName("id")]
         public long Id
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the Item Level
         /// </summary>
-        [DataMember(Name = "level", IsRequired = false)]
+        [JsonPropertyName("level")]
         public long Level
         {
             get;
-            internal set;
+            set;
         }
 
 
         /// <summary>
         ///   Gets or sets the auction id
         /// </summary>
-        [DataMember(Name = "item_subclass", IsRequired = false)]
+        [JsonPropertyName("item_subclass")]
         public SubClass ItemSubclass
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the auction id
         /// </summary>
-        [DataMember(Name = "item_class", IsRequired = false)]
+        [JsonPropertyName("item_class")]
         public SubClass ItemClass
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the auction id
         /// </summary>
-        [DataMember(Name = "quality", IsRequired = false)]
+        [JsonPropertyName("quality")]
         public SubClass Quality
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the auction id
         /// </summary>
-        [DataMember(Name = "name", IsRequired = false)]
+        [JsonPropertyName("name")]
         public LocalizationValue Name
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the Item Level
         /// </summary>
-        [DataMember(Name = "required_level", IsRequired = false)]
+        [JsonPropertyName("required_level")]
         public long RequiredLevel
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the Kaufpreis
         /// </summary>
-        [DataMember(Name = "sell_price", IsRequired = false)]
+        [JsonPropertyName("sell_price")]
         public long SellPrice
         {
             get;
-            internal set;
+            set;
         }
 
 
         /// <summary>
         ///   Gets or sets the Verkauspreis
         /// </summary>
-        [DataMember(Name = "purchase_price", IsRequired = false)]
+        [JsonPropertyName("purchase_price")]
         public long PurchasePrice
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the Stapelbar    
         /// </summary>
-        [DataMember(Name = "is_stackable", IsRequired = false)]
+        [JsonPropertyName("is_stackable")]
         public bool IsStackable
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the anlegbar    
         /// </summary>
-        [DataMember(Name = "is_equippable", IsRequired = false)]
+        [JsonPropertyName("is_equippable")]
         public bool IsEquippable
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the Einkaufsmenge
         /// </summary>
-        [DataMember(Name = "purchase_quantity", IsRequired = false)]
-        public bool PurchaseQuantity
+        [JsonPropertyName("purchase_quantity")]
+        public int PurchaseQuantity
         {
             get;
-            internal set;
+            set;
         }
 
     }

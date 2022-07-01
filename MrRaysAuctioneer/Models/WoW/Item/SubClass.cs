@@ -18,7 +18,7 @@ namespace MrRaysAuctioneer.Models.WoW.Item
         public long Id
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace MrRaysAuctioneer.Models.WoW.Item
         public LocalizationValue Name
         {
             get;
-            internal set;
+            set;
         }
     }
 }
