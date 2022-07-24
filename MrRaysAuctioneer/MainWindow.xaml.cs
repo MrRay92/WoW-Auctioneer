@@ -88,8 +88,10 @@ namespace MrRaysAuctioneer
 
         void OnClick_SaveAt(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog openFileDialog = new();
-            openFileDialog.Filter = Properties.Resources.FileFilter_JSON;
+            SaveFileDialog openFileDialog = new()
+            {
+                Filter = Properties.Resources.FileFilter_JSON
+            };
             if (openFileDialog.ShowDialog() != true)
                 return;
 
@@ -106,8 +108,10 @@ namespace MrRaysAuctioneer
         void OnClick_LoadFrom(object sender, RoutedEventArgs e)
         {
 
-            OpenFileDialog openFileDialog = new();
-            openFileDialog.Filter = Properties.Resources.FileFilter_JSON;
+            OpenFileDialog openFileDialog = new()
+            {
+                Filter = Properties.Resources.FileFilter_JSON
+            };
             if (openFileDialog.ShowDialog() != true)
                 return;
 
